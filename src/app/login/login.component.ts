@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,13 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  public email = '';
+  public password = '';
+
+  constructor(
+    private auth: Auth,
+    private router: Router
+    ) {}
 
   ngOnInit(): void {
   }
 
   login()
   {
-    alert('logging in');
+    signInWithEmailAndPassword(this.auth, this.email, this.password)
+      .then(() => this.router.navigate(['/dashboard']))
+      .catch((e) => console.log(e.message));
   }
 }
