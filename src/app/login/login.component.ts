@@ -24,6 +24,6 @@ export class LoginComponent implements OnInit {
   {
     signInWithEmailAndPassword(this.auth, this.email, this.password)
       .then(() => this.router.navigate(['/dashboard']))
-      .catch((e) => console.log(e.message));
+      .catch((e) => alert(e.message));
   }
 }
