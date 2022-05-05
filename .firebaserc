@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "carvaletbooking-46c6e": {
+      "hosting": {
+        "CarValetBooking": [
+          "carvaletbooking-46c6e"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "carvaletbooking-46c6e"
+  }
+}
