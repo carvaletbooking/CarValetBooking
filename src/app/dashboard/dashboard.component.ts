@@ -12,8 +12,8 @@ import { Job, ValetTypes } from '../app.model';
 })
 export class DashboardComponent implements OnInit {
 
-  public options: string[];
-  public selected: string[];
+  public availableValets: string[];
+  public selectedValets: string[];
   public readonly jobs$: Observable<Job[]>;
 
   constructor(
@@ -21,13 +21,14 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     firestore: Firestore
     ) {
-      this.options = Object.values(ValetTypes);
-      this.selected = this.options;
+      this.availableValets = Object.values(ValetTypes);
+      this.selectedValets = this.availableValets;
 
       this.jobs$ = collectionData(
         query(
           collection(firestore, 'jobs'), 
-          where('createdby', '==', 'john'))) as Observable<Job[]>;
+          where('valet', 'in', this.selectedValets)),
+          { idField: 'id' }) as Observable<Job[]>;
     }
 
   ngOnInit(): void {
