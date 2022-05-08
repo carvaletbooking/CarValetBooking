@@ -3,7 +3,7 @@ import { Auth, signOut } from '@angular/fire/auth';
 import { collection, collectionData, query, where, Firestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Job } from '../app.model';
+import { Job, ValetTypes } from '../app.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +12,8 @@ import { Job } from '../app.model';
 })
 export class DashboardComponent implements OnInit {
 
+  public options: string[];
+  public selected: string[];
   public readonly jobs$: Observable<Job[]>;
 
   constructor(
@@ -19,6 +21,9 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     firestore: Firestore
     ) {
+      this.options = Object.values(ValetTypes);
+      this.selected = this.options;
+
       this.jobs$ = collectionData(
         query(
           collection(firestore, 'jobs'), 

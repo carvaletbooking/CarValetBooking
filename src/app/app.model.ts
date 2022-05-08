@@ -4,9 +4,17 @@ export interface Job {
     regno: string;
     reqdate: Date;
     type: 'New' | 'Used';
-    valet: 'Full Clean' | 'Reclean' | 'Stock Clean';
+    valet: ValetTypes;
     completed: boolean;
     createdon: Date;
     createdby: string;
     comment: string;
 }
+
+export enum ValetTypes {
+    FullClean = 'Full Clean',
+    Reclean = 'Reclean',
+    StockClean = 'Stock Clean'
+}
+
+ 
