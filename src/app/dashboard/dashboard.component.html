@@ -1,6 +1,6 @@
 <mat-form-field appearance="fill">
   <mat-label>Show</mat-label>
-  <mat-select [(ngModel)]="selectedValets" multiple>
+  <mat-select [(ngModel)]="selectedValets" (selectionChange)="getJobs()" multiple>
     <mat-option *ngFor="let option of availableValets" [value]="option">{{option}}</mat-option>
   </mat-select>
 </mat-form-field>

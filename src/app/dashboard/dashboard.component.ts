@@ -14,24 +14,26 @@ export class DashboardComponent implements OnInit {
 
   public availableValets: string[];
   public selectedValets: string[];
-  public readonly jobs$: Observable<Job[]>;
+  public jobs$!: Observable<Job[]>;
 
   constructor(
     private auth: Auth,
     private router: Router,
-    firestore: Firestore
-    ) {
+    private firestore: Firestore) {
       this.availableValets = Object.values(ValetTypes);
-      this.selectedValets = this.availableValets;
-
-      this.jobs$ = collectionData(
-        query(
-          collection(firestore, 'jobs'), 
-          where('valet', 'in', this.selectedValets)),
-          { idField: 'id' }) as Observable<Job[]>;
-    }
+      this.selectedValets = this.availableValets;     
+      this.getJobs(); 
+  }
 
   ngOnInit(): void {
+  }
+
+  getJobs(){
+    this.jobs$ = collectionData(
+      query(
+        collection(this.firestore, 'jobs'), 
+        where('valet', 'in', this.selectedValets)),
+      { idField: 'id' }) as Observable<Job[]>;
   }
 
   logout(){
