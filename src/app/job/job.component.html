@@ -2,54 +2,54 @@
 
 <mat-dialog-content>
     <form #jobForm="ngForm">
-        <mat-checkbox name="completed" [(ngModel)]="job.completed">Completed</mat-checkbox>
+        <mat-checkbox name="completed" [(ngModel)]="completed">Completed</mat-checkbox>
     
         <mat-form-field appearance="fill">
             <mat-label>Company</mat-label>
-            <mat-select required name="company" [(ngModel)]="job.company">
+            <mat-select required name="company" [(ngModel)]="company">
                 <mat-option *ngFor="let option of companyOptions" [value]="option">{{option}}</mat-option>
             </mat-select>
         </mat-form-field>
         
         <mat-form-field>
-            <input required name="model" matInput placeholder="Model" [(ngModel)]="job.model">
+            <input required name="model" matInput placeholder="Model" [(ngModel)]="model">
         </mat-form-field>
 
         <mat-form-field>
-            <input required name="regno" matInput placeholder="RegNo/Chassis" [(ngModel)]="job.regno">
+            <input required name="regno" matInput placeholder="RegNo/Chassis" [(ngModel)]="regno">
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Car Type</mat-label>
-            <mat-select required name="type" [(ngModel)]="job.type">
+            <mat-select required name="type" [(ngModel)]="type">
                 <mat-option *ngFor="let option of typeOptions" [value]="option">{{option}}</mat-option>
             </mat-select>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Required by Date</mat-label>
-            <input required matInput name="reqdate" [matDatepicker]="picker" [(ngModel)]="job.reqdate">
+            <input required matInput name="reqdate" [matDatepicker]="picker" [(ngModel)]="reqdate">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Required by Time</mat-label>
-            <mat-select required name="reqtime" [(ngModel)]="job.reqtime">
+            <mat-select required name="reqtime" [(ngModel)]="reqtime">
                 <mat-option *ngFor="let option of timeOptions" [value]="option">{{option}}</mat-option>
             </mat-select>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Valet Type</mat-label>
-            <mat-select required name="valet" [(ngModel)]="job.valet">
+            <mat-select required name="valet" [(ngModel)]="valet">
                 <mat-option *ngFor="let option of valetOptions" [value]="option">{{option}}</mat-option>
             </mat-select>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Comment</mat-label>
-            <textarea name="comment" matInput [(ngModel)]="job.comment"></textarea>
+            <textarea name="comment" matInput [(ngModel)]="comment"></textarea>
         </mat-form-field>
 
     </form>

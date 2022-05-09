@@ -5,12 +5,12 @@ export interface Job {
     company: string;
     model: string;
     regno: string;
-    reqdate: Timestamp | null;
+    reqdate: Timestamp | undefined;
     reqtime: string;
     type: string;
     valet: string;
     completed: boolean;
-    createdon: string;
+    createdon: Timestamp | undefined;
     createdby: string;
     comment: string;
 }

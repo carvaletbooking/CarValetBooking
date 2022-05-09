@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public jobs: Job[];
   public subscription: Subscription | null;
 
-  displayedColumns: string[] = ['company', 'model', 'regno', 'type', 'reqdate', 'valet'];
+  displayedColumns: string[] = ['company', 'model', 'regno', 'type', 'reqdate', 'valet', 'edit'];
 
   constructor(
     private auth: Auth,
@@ -57,6 +57,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
     dialogConfig.data = {
       title: 'New Job'
     };
+
+    this.dialog.open(JobComponent, dialogConfig);
+  }
+
+  edit(job: Job) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = job;
 
     this.dialog.open(JobComponent, dialogConfig);
   }
