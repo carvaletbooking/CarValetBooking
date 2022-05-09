@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public jobs: Job[];
   public subscription: Subscription | null;
 
-  displayedColumns: string[] = ['company', 'model', 'regno', 'type', 'reqdate', 'valet', 'edit'];
+  displayedColumns: string[] = ['company', 'model', 'regno', 'type', 'reqdate', 'reqtime', 'valet', 'completed', 'edit'];
 
   constructor(
     private auth: Auth,
