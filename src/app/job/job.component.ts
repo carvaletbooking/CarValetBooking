@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
 import { collection, doc, addDoc, setDoc, Firestore, Timestamp } from '@angular/fire/firestore';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Job, CompanyNames, ValetTypes, CarTypes, TimeOptions } from '../app.model';
@@ -31,6 +32,7 @@ export class JobComponent implements OnInit {
   public title: string;
 
   constructor(
+    private auth: Auth,
     private firestore: Firestore,
     private dialogRef: MatDialogRef<JobComponent>,
     @Inject(MAT_DIALOG_DATA) job: Job) { 
@@ -68,7 +70,7 @@ export class JobComponent implements OnInit {
       valet: this.valet,
       completed: this.completed,
       createdon: this.createdon ?? new Date(),
-      createdby: this.createdby ?? '',
+      createdby: this.createdby ?? this.auth.currentUser?.email,
       comment: this.comment ?? ''
     }
 
