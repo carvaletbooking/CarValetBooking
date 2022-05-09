@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Auth, signOut } from '@angular/fire/auth';
 import { collection, collectionData, query, where, Firestore } from '@angular/fire/firestore';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Job, ValetTypes } from '../app.model';
+import { JobComponent } from '../job/job.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,6 +24,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private auth: Auth,
     private router: Router,
+    private dialog: MatDialog,
     private firestore: Firestore) {
       this.availableValets = Object.values(ValetTypes);
       this.selectedValets = this.availableValets;     
@@ -44,6 +47,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .subscribe((data)=>{
         this.jobs = data as Job[];
       });
+  }
+
+  add() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      title: 'New Job'
+    };
+
+    this.dialog.open(JobComponent, dialogConfig);
   }
 
   logout(){

@@ -5,6 +5,8 @@
   </mat-select>
 </mat-form-field>
 
+<button mat-raised-button (click)="add()">New Job</button>
+
 <table mat-table [dataSource]="jobs" class="mat-elevation-z8">
 
   <ng-container matColumnDef="company">
@@ -41,6 +43,6 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-<button (click)="logout()">Logout</button>
+<button mat-raised-button (click)="logout()">Logout</button>
 
 
