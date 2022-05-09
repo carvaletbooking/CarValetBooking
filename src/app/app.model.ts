@@ -1,9 +1,11 @@
+import { Timestamp } from "@angular/fire/firestore";
+
 export interface Job {
     id: string;
     company: string;
     model: string;
     regno: string;
-    reqdate: string;
+    reqdate: Timestamp | null;
     reqtime: string;
     type: string;
     valet: string;

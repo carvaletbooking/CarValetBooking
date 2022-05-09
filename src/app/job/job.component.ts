@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { collection, addDoc, Firestore } from '@angular/fire/firestore';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import { Job, CompanyNames, ValetTypes, CarTypes, TimeOptions } from '../app.model';
 
@@ -20,7 +21,7 @@ export class JobComponent implements OnInit {
     company: '',
     model: '',
     regno: '',
-    reqdate: '',
+    reqdate: null,
     reqtime: '',
     type: '',
     valet: '',
@@ -31,6 +32,7 @@ export class JobComponent implements OnInit {
   };
 
   constructor(
+    private firestore: Firestore,
     private dialogRef: MatDialogRef<JobComponent>,
     @Inject(MAT_DIALOG_DATA) data: any) { 
       this.title = data.title;
@@ -44,7 +46,8 @@ export class JobComponent implements OnInit {
   }
 
   save() {
-    this.dialogRef.close();
+    addDoc(collection(this.firestore, 'jobs'), this.job)
+      .then(()=>this.dialogRef.close());
   }
 
   close() {
