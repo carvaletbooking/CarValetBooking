@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Auth, signOut } from '@angular/fire/auth';
 import { collection, collectionData, query, where, Firestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Job, ValetTypes } from '../app.model';
 
 @Component({
@@ -10,11 +10,14 @@ import { Job, ValetTypes } from '../app.model';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
 
   public availableValets: string[];
   public selectedValets: string[];
-  public jobs$!: Observable<Job[]>;
+  public jobs: Job[];
+  public subscription: Subscription | null;
+
+  displayedColumns: string[] = ['company', 'model', 'regno', 'type', 'reqdate', 'valet'];
 
   constructor(
     private auth: Auth,
@@ -22,23 +25,34 @@ export class DashboardComponent implements OnInit {
     private firestore: Firestore) {
       this.availableValets = Object.values(ValetTypes);
       this.selectedValets = this.availableValets;     
-      this.getJobs(); 
+      this.jobs = [];
+      this.subscription = null;
   }
 
   ngOnInit(): void {
+    this.getJobs(); 
   }
 
   getJobs(){
-    this.jobs$ = collectionData(
+    this.subscription?.unsubscribe();
+    
+    this.subscription = collectionData(
       query(
         collection(this.firestore, 'jobs'), 
         where('valet', 'in', this.selectedValets)),
-      { idField: 'id' }) as Observable<Job[]>;
+      { idField: 'id' })
+      .subscribe((data)=>{
+        this.jobs = data as Job[];
+      });
   }
 
   logout(){
     signOut(this.auth)
       .then(() => this.router.navigate(['/login']))
       .catch((e) => alert(e.message));
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }
