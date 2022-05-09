@@ -1,9 +1,10 @@
 export interface Job {
-    company: 'Mid Ulster' | 'TJ Hamilton';
+    id: string;
+    company: CompanyNames;
     model: string;
     regno: string;
     reqdate: Date;
-    type: 'New' | 'Used';
+    type: CarTypes;
     valet: ValetTypes;
     completed: boolean;
     createdon: Date;
@@ -17,4 +18,12 @@ export enum ValetTypes {
     StockClean = 'Stock Clean'
 }
 
- 
+export enum CarTypes {
+    New = 'New',
+    Used = 'Used'
+}
+
+export enum CompanyNames {
+    MidUlster = 'Mid Ulster',
+    TjHamilton = 'TJ Hamilton'
+}
