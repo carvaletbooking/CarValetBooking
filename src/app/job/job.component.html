@@ -52,6 +52,12 @@
             <textarea name="comment" matInput [(ngModel)]="comment"></textarea>
         </mat-form-field>
 
+        <div *ngIf="id">
+            Created {{createdon | date}}
+            <br/>
+            by {{createdby}}
+        </div>
+
     </form>
     
 </mat-dialog-content>
