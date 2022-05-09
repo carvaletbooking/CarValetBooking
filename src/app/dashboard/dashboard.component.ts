@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private router: Router,
     private dialog: MatDialog,
     private firestore: Firestore) {
-      this.availableValets = Object.values(ValetTypes);
+      this.availableValets = ValetTypes;
       this.selectedValets = this.availableValets;     
       this.jobs = [];
       this.subscription = null;
