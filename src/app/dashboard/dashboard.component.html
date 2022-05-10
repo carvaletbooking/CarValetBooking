@@ -14,6 +14,13 @@
 
 <table mat-table [dataSource]="jobs" class="mat-elevation-z8">
 
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let job"> 
+      <button mat-button (click)="edit(job)">Edit</button>
+    </td>
+  </ng-container>
+
   <ng-container matColumnDef="company">
     <th mat-header-cell *matHeaderCellDef> Company </th>
     <td mat-cell *matCellDef="let job"> {{job.company}} </td>
@@ -25,7 +32,7 @@
   </ng-container>
 
   <ng-container matColumnDef="regno">
-    <th mat-header-cell *matHeaderCellDef> RegNo/Chassis </th>
+    <th mat-header-cell *matHeaderCellDef> RegNo </th>
     <td mat-cell *matCellDef="let job"> {{job.regno}} </td>
   </ng-container>
 
@@ -35,13 +42,8 @@
   </ng-container>
 
   <ng-container matColumnDef="reqdate">
-    <th mat-header-cell *matHeaderCellDef> Required by Date</th>
-    <td mat-cell *matCellDef="let job"> {{job.reqdate.toDate() | date}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="reqtime">
-    <th mat-header-cell *matHeaderCellDef> Required by Time</th>
-    <td mat-cell *matCellDef="let job"> {{job.reqtime}} </td>
+    <th mat-header-cell *matHeaderCellDef> Required by </th>
+    <td mat-cell *matCellDef="let job"> {{job.reqdate.toDate() | date}} {{job.reqtime}}</td>
   </ng-container>
 
   <ng-container matColumnDef="valet">
@@ -49,18 +51,14 @@
     <td mat-cell *matCellDef="let job"> {{job.valet}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="completed">
-    <th mat-header-cell *matHeaderCellDef> Completed </th>
-    <td mat-cell *matCellDef="let job"> 
-      <mat-checkbox [ngModel]="job.completed" disabled></mat-checkbox>
-    </td>
+  <ng-container matColumnDef="createdby">
+    <th mat-header-cell *matHeaderCellDef> Created By </th>
+    <td mat-cell *matCellDef="let job"> {{job.createdby}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="edit">
-    <th mat-header-cell *matHeaderCellDef> </th>
-    <td mat-cell *matCellDef="let job"> 
-      <button mat-button (click)="edit(job)">Edit</button>
-    </td>
+  <ng-container matColumnDef="comment">
+    <th mat-header-cell *matHeaderCellDef> Comment </th>
+    <td mat-cell *matCellDef="let job"> {{job.comment}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
