@@ -1,4 +1,17 @@
-<input name="email" type="text" placeholder="email" [(ngModel)]="email"/>
-<input name="password" type="password" placeholder="password" [(ngModel)]="password"/>
-
-<button (click)="login()">Login</button>
+<div fxLayout="column" fxFlexFill fxLayoutAlign="start center">
+    <div fxFlex="20"></div>
+    <h3 class="mat-headline">Sign In</h3>
+    <mat-card class="mat-elevation-z4">
+        <mat-card-content>
+            <form fxLayout="column" #ngForm="ngForm">
+              <mat-form-field>
+                  <input matInput type="text" spellcheck="false" placeholder="Email" name="email" [(ngModel)]="email" required>
+              </mat-form-field>
+              <mat-form-field>
+                  <input matInput placeholder="Password" type="password" name="password" [(ngModel)]="password" required>
+              </mat-form-field>
+              <button mat-raised-button type="submit" (click)="login()" color="primary" name="submit" [disabled]="!ngForm.valid">Sign In</button>
+          </form>
+        </mat-card-content>
+    </mat-card>
+  </div>
