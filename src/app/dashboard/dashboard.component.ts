@@ -14,6 +14,7 @@ import { JobComponent } from '../job/job.component';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
+  public completed: boolean;
   public availableValets: string[];
   public selectedValets: string[];
   public jobs: Job[];
@@ -26,6 +27,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private router: Router,
     private dialog: MatDialog,
     private firestore: Firestore) {
+      this.completed = false;
       this.availableValets = ValetTypes;
       this.selectedValets = this.availableValets;     
       this.jobs = [];
@@ -42,7 +44,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.subscription = collectionData(
       query(
         collection(this.firestore, 'jobs'), 
-        where('valet', 'in', this.selectedValets)),
+        where('valet', 'in', this.selectedValets),
+        where('completed', '==', this.completed)),
       { idField: 'id' })
       .subscribe((data)=>{
         this.jobs = data as Job[];
