@@ -22,6 +22,7 @@ import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatNativeDateModule,
     MatDatepickerModule,
     MatCheckboxModule,
+    MatToolbarModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore())

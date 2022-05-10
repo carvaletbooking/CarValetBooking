@@ -1,3 +1,9 @@
+<mat-toolbar color="primary">
+  <span>Car Valet Booking</span>
+  <span class="spacer"></span>
+  <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
+
 <mat-button-toggle-group [(ngModel)]="selectedValets" multiple (change)="getJobs()">
   <mat-button-toggle *ngFor="let option of availableValets" [value]="option">{{option}}</mat-button-toggle>
 </mat-button-toggle-group>
@@ -61,6 +67,5 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-<button mat-raised-button (click)="logout()">Logout</button>
 
 
