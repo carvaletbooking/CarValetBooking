@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Auth, signOut } from '@angular/fire/auth';
-import { collection, collectionData, query, where, Firestore, Timestamp } from '@angular/fire/firestore';
+import { collection, collectionData, query, where, Firestore, Timestamp, orderBy } from '@angular/fire/firestore';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -45,7 +45,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
       query(
         collection(this.firestore, 'jobs'), 
         where('valet', 'in', this.selectedValets),
-        where('completed', '==', this.completed)),
+        where('completed', '==', this.completed),
+        orderBy('reqdate'),
+        orderBy('reqtime')),
       { idField: 'id' })
       .subscribe((data)=>{
         this.jobs = data as Job[];
