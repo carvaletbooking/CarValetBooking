@@ -60,7 +60,7 @@
         </mat-form-field>
 
         <div *ngIf="id">
-            Created {{createdon | date}}
+            Created {{createdon | date:'MMM d, y, HH:mm'}}
             <br/>
             by {{createdby}}
         </div>
