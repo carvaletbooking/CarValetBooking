@@ -11,8 +11,12 @@ mat-checkbox {
     flex: 1 1 auto;
 }
 
+.mat-column-delete {
+    width: 50px;
+}
+
 .mat-column-edit {
-    width: 80px;
+    width: 50px;
 }
 
 .mat-column-company {

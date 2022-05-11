@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Auth, signOut } from '@angular/fire/auth';
-import { collection, collectionData, query, where, Firestore, Timestamp, orderBy } from '@angular/fire/firestore';
+import { collection, collectionData, deleteDoc, doc, query, where, orderBy, Firestore } from '@angular/fire/firestore';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public jobs: Job[];
   public subscription: Subscription | null;
 
-  displayedColumns: string[] = ['edit', 'company', 'model', 'regno', 'type', 'reqdate', 'valet', 'createdby', 'createdon', 'comment'];
+  displayedColumns: string[] = ['delete', 'edit', 'company', 'model', 'regno', 'type', 'reqdate', 'valet', 'createdby', 'createdon', 'comment'];
 
   constructor(
     private auth: Auth,
@@ -76,6 +76,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.dialog.open(JobComponent, dialogConfig);
   }
 
+  delete(job: Job) {
+    deleteDoc(doc(this.firestore, `jobs/${job.id}`));
+  }
+  
   private today = new Date();
 
   isOverdue(job: Job) : boolean {
