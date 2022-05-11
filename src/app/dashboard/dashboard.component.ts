@@ -76,6 +76,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.dialog.open(JobComponent, dialogConfig);
   }
 
+  private today = new Date();
+
+  isOverdue(job: Job) : boolean {
+    if (this.completed) return false;
+    return job.reqdate!.toDate() < this.today;
+  }
+
   logout(){
     signOut(this.auth)
       .then(() => this.router.navigate(['/login']))

@@ -45,3 +45,7 @@ mat-checkbox {
 .mat-cell {
     padding: 8px 8px 8px 0;
 }
+
+.overdue {
+    background-color:lightcoral;
+}
