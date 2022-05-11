@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { collection, doc, addDoc, setDoc, Firestore, Timestamp } from '@angular/fire/firestore';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { Job, CompanyNames, ValetTypes, CarTypes, TimeOptions } from '../app.model';
+import { Job, CompanyNames, ValetTypes, CarTypes, TimeOptions, ProtectionKits } from '../app.model';
 
 @Component({
   selector: 'app-job',
@@ -18,6 +18,7 @@ export class JobComponent implements OnInit {
   public reqdate: Date | undefined;
   public reqtime: string;
   public type: string;
+  public protection: string;
   public valet: string;
   public completed: boolean;
   public createdon: Date | undefined;
@@ -26,6 +27,7 @@ export class JobComponent implements OnInit {
 
   public companyOptions: string[];
   public typeOptions: string[];
+  public protectionKitOptions: string[];
   public valetOptions: string[];
   public timeOptions: string[];
 
@@ -39,6 +41,7 @@ export class JobComponent implements OnInit {
       this.title = job.id ? 'Edit Job' : 'New Job';
       this.companyOptions = CompanyNames;
       this.typeOptions = CarTypes;
+      this.protectionKitOptions = ProtectionKits;
       this.valetOptions = ValetTypes;
       this.timeOptions = TimeOptions;
       
@@ -49,6 +52,7 @@ export class JobComponent implements OnInit {
       this.reqdate = job.reqdate?.toDate(),
       this.reqtime = job.reqtime;
       this.type = job.type;
+      this.protection = job.protection;
       this.valet = job.valet;
       this.completed = job.completed === true;
       this.createdon = job.createdon?.toDate();
@@ -67,6 +71,7 @@ export class JobComponent implements OnInit {
       reqdate: this.reqdate,
       reqtime: this.reqtime,
       type: this.type,
+      protection: this.protection,
       valet: this.valet,
       completed: this.completed,
       createdon: this.createdon ?? new Date(),

@@ -8,6 +8,7 @@ export interface Job {
     reqdate: Timestamp | undefined;
     reqtime: string;
     type: string;
+    protection: string; 
     valet: string;
     completed: boolean;
     createdon: Timestamp | undefined;
@@ -29,6 +30,12 @@ export const CarTypes = [
 export const CompanyNames = [
     'Mid Ulster',
     'TJ Hamilton'
+]
+
+export const ProtectionKits = [
+    'n/a',
+    'Supagard',
+    'LifeShine'
 ]
 
 export const TimeOptions = [
