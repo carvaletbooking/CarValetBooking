@@ -43,7 +43,7 @@
 
   <ng-container matColumnDef="reqdate">
     <th mat-header-cell *matHeaderCellDef> Required by </th>
-    <td mat-cell *matCellDef="let job"> {{job.reqdate.toDate() | date}} {{job.reqtime}}</td>
+    <td mat-cell *matCellDef="let job"> {{job.reqdate.toDate() | date}}, {{job.reqtime}}</td>
   </ng-container>
 
   <ng-container matColumnDef="valet">
@@ -54,6 +54,11 @@
   <ng-container matColumnDef="createdby">
     <th mat-header-cell *matHeaderCellDef> Created By </th>
     <td mat-cell *matCellDef="let job"> {{job.createdby}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="createdon">
+    <th mat-header-cell *matHeaderCellDef> Created On </th>
+    <td mat-cell *matCellDef="let job"> {{job.createdon.toDate() | date:'MMM d, y, HH:mm'}} </td>
   </ng-container>
 
   <ng-container matColumnDef="comment">

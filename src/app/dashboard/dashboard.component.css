@@ -17,14 +17,29 @@ mat-checkbox {
 
 .mat-column-company {
     width: 100px;
+    white-space: nowrap;
 }
 
 .mat-column-reqdate {
     width: 140px;
+    white-space: nowrap;
 }
 
 .mat-column-valet {
     width: 60px;
+    white-space: nowrap;
+}
+
+.mat-column-createdby {
+    width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mat-column-createdon {
+    width: 140px;
+    white-space: nowrap;
 }
 
 .mat-cell {
