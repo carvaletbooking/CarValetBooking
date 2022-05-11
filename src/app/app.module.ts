@@ -24,6 +24,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
@@ -50,6 +51,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatCheckboxModule,
     MatToolbarModule,
     MatCardModule,
+    MatIconModule,
     FlexLayoutModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
