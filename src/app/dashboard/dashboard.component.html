@@ -52,6 +52,11 @@
     <td mat-cell *matCellDef="let job"> {{job.type}} </td>
   </ng-container>
 
+  <ng-container matColumnDef="protection">
+    <th mat-header-cell *matHeaderCellDef> Option </th>
+    <td mat-cell *matCellDef="let job"> {{job.protection}} </td>
+  </ng-container>
+
   <ng-container matColumnDef="reqdate">
     <th mat-header-cell *matHeaderCellDef> Required by </th>
     <td mat-cell *matCellDef="let job"> {{job.reqdate.toDate() | date}}, {{job.reqtime}}</td>

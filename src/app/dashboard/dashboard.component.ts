@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public jobs: Job[];
   public subscription: Subscription | null;
 
-  displayedColumns: string[] = ['delete', 'edit', 'company', 'model', 'regno', 'type', 'reqdate', 'valet', 'createdby', 'createdon', 'comment'];
+  displayedColumns: string[] = ['delete', 'edit', 'company', 'model', 'regno', 'type', 'protection', 'reqdate', 'valet', 'createdby', 'createdon', 'comment'];
 
   constructor(
     private auth: Auth,
@@ -79,7 +79,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   delete(job: Job) {
     deleteDoc(doc(this.firestore, `jobs/${job.id}`));
   }
-  
+
   private today = new Date();
 
   isOverdue(job: Job) : boolean {
