@@ -17,8 +17,8 @@ export interface Job {
 }
 
 export const ValetTypes = [
-    'Full Clean',
-    'Reclean',
+    'Full Clean - handover',
+    'Reclean - handover',
     'Stock Clean'
 ]
 
