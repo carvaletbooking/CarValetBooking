@@ -77,7 +77,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   delete(job: Job) {
-    deleteDoc(doc(this.firestore, `jobs/${job.id}`));
+    if (confirm('Are you sure you wish to delete this job?'))
+    {
+      deleteDoc(doc(this.firestore, `jobs/${job.id}`))
+        .catch((e) => alert(e.message));
+    }
   }
 
   private today = new Date();
